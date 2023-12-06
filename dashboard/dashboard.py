@@ -1,3 +1,4 @@
+import calendar
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -57,7 +58,7 @@ def create_day_timegroup_user_df(df):
     return day_timegroup_user_df
 
 # Filter data
-day_df = pd.read_csv("day.csv")
+day_df = pd.read_csv("..\\data\\day.csv")
 day_df['yr'] = day_df['yr'].apply(lambda x: "2011" if x == 0 else "2012")
 day_df['mnth'] = day_df['mnth'].apply(lambda x: calendar.month_name[x])
 day_df['season'] = day_df['season'].apply(lambda x: "Spring" if x == 1 else ("Summer" if x == 2 else ("Fall" if x == 3 else "Winter")))
@@ -65,7 +66,7 @@ day_df['holiday'] = day_df['holiday'].apply(lambda x: "Holiday" if x == 1 else "
 day_df['weekday'] = day_df['weekday'].apply(lambda x: calendar.day_name[(x-1)%7])
 day_df['workingday'] = day_df['workingday'].apply(lambda x: "Working Day" if x == 1 else "Non Working Day")
 
-hour_df = pd.read_csv("hour.csv")
+hour_df = pd.read_csv("..\\data\\hour.csv")
 hour_df['yr'] = hour_df['yr'].apply(lambda x: "2011" if x == 0 else "2012")
 hour_df['mnth'] = hour_df['mnth'].apply(lambda x: calendar.month_name[x])
 hour_df['season'] = hour_df['season'].apply(lambda x: "Spring" if x == 1 else ("Summer" if x == 2 else ("Fall" if x == 3 else "Winter")))
@@ -79,7 +80,7 @@ max_date = pd.to_datetime(day_df["dteday"].max())
 
 with st.sidebar:
     st.header("Bike Sharing")
-    st.image("bicycle.png")
+    st.image("..\\bicycle.png")
     
     start_date, end_date = st.date_input(
         label='Rentang Waktu',min_value=min_date,
