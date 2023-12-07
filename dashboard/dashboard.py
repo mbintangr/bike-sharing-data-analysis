@@ -354,7 +354,7 @@ with tab2:
     st.subheader("Average user per day per time group")
 
     fig,ax = plt.subplots()
-    ax = sns.barplot(data=day_timegroup_user_df, x="weekday", y="cnt", hue="time_group", color="#72BCD4")
+    ax = sns.barplot(data=day_timegroup_user_df, x="weekday", y="cnt", hue="time_group", palette="light:#72BCD4")
     ax.set_xlabel(None)
     ax.set_ylabel("Average Number of User")
     st.pyplot(fig)
