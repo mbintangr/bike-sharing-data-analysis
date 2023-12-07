@@ -58,7 +58,7 @@ def create_day_timegroup_user_df(df):
     return day_timegroup_user_df
 
 # Filter data
-day_df = pd.read_csv("..\data\day.csv")
+day_df = pd.read_csv(r"..\data\day.csv")
 day_df['yr'] = day_df['yr'].apply(lambda x: "2011" if x == 0 else "2012")
 day_df['mnth'] = day_df['mnth'].apply(lambda x: calendar.month_name[x])
 day_df['season'] = day_df['season'].apply(lambda x: "Spring" if x == 1 else ("Summer" if x == 2 else ("Fall" if x == 3 else "Winter")))
