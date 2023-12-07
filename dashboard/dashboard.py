@@ -94,8 +94,14 @@ min_date = pd.to_datetime(day_df["dteday"].min())
 max_date = pd.to_datetime(day_df["dteday"].max())
 
 with st.sidebar:
+    # Get the absolute path of the current file
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Construct the path to the CSV file using os.path.join()
+    img_path = os.path.join(current_dir, '../bicycle.png')
+
     st.header("Bike Sharing")
-    st.image("..\\bicycle.png")
+    st.image(img_path)
     
     start_date, end_date = st.date_input(
         label='Rentang Waktu',min_value=min_date,
