@@ -57,20 +57,8 @@ def create_day_timegroup_user_df(df):
     day_timegroup_user_df = round(hour_df.groupby(by=["weekday", "time_group"]).cnt.mean()).reset_index()
     return day_timegroup_user_df
 
-import os
-
-# Set the current working directory to the location of the script
-current_dir = os.path.dirname(os.path.abspath(__file__))
-os.chdir(current_dir)
-
-# Load data
-day_df = pd.read_csv(os.path.join('data', 'day.csv'))
-hour_df = pd.read_csv(os.path.join('data', 'hour.csv'))
-
-# Display dataframes or perform analysis as needed
-
 # Filter data
-#day_df = pd.read_csv("data/day.csv")
+day_df = pd.read_csv("data/day.csv")
 day_df['yr'] = day_df['yr'].apply(lambda x: "2011" if x == 0 else "2012")
 day_df['mnth'] = day_df['mnth'].apply(lambda x: calendar.month_name[x])
 day_df['season'] = day_df['season'].apply(lambda x: "Spring" if x == 1 else ("Summer" if x == 2 else ("Fall" if x == 3 else "Winter")))
@@ -78,7 +66,7 @@ day_df['holiday'] = day_df['holiday'].apply(lambda x: "Holiday" if x == 1 else "
 day_df['weekday'] = day_df['weekday'].apply(lambda x: calendar.day_name[(x-1)%7])
 day_df['workingday'] = day_df['workingday'].apply(lambda x: "Working Day" if x == 1 else "Non Working Day")
 
-#hour_df = pd.read_csv("data/hour.csv")
+hour_df = pd.read_csv("data/hour.csv")
 hour_df['yr'] = hour_df['yr'].apply(lambda x: "2011" if x == 0 else "2012")
 hour_df['mnth'] = hour_df['mnth'].apply(lambda x: calendar.month_name[x])
 hour_df['season'] = hour_df['season'].apply(lambda x: "Spring" if x == 1 else ("Summer" if x == 2 else ("Fall" if x == 3 else "Winter")))
@@ -92,13 +80,7 @@ max_date = pd.to_datetime(day_df["dteday"].max())
 
 with st.sidebar:
     st.header("Bike Sharing")
-    
-    # Display the image
-    image_path = "bicycle.png"
-    if os.path.exists(image_path):
-        st.image(image_path, caption='Bicycle Image', use_column_width=True)
-    else:
-        st.error(f"Image not found: {image_path}")
+    st.image("./bicycle.png")
     
     start_date, end_date = st.date_input(
         label='Rentang Waktu',min_value=min_date,
