@@ -58,7 +58,17 @@ def create_day_timegroup_user_df(df):
     return day_timegroup_user_df
 
 # Filter data
-day_df = pd.read_csv("..\data\day.csv")
+import os
+
+# Get the absolute path of the current file
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Construct the path to the CSV file using os.path.join()
+csv_path = os.path.join(current_dir, '../data/day.csv')
+
+# Read the CSV file
+day_df = pd.read_csv(csv_path)
+#day_df = pd.read_csv("..\data\day.csv")
 day_df['yr'] = day_df['yr'].apply(lambda x: "2011" if x == 0 else "2012")
 day_df['mnth'] = day_df['mnth'].apply(lambda x: calendar.month_name[x])
 day_df['season'] = day_df['season'].apply(lambda x: "Spring" if x == 1 else ("Summer" if x == 2 else ("Fall" if x == 3 else "Winter")))
@@ -66,7 +76,12 @@ day_df['holiday'] = day_df['holiday'].apply(lambda x: "Holiday" if x == 1 else "
 day_df['weekday'] = day_df['weekday'].apply(lambda x: calendar.day_name[(x-1)%7])
 day_df['workingday'] = day_df['workingday'].apply(lambda x: "Working Day" if x == 1 else "Non Working Day")
 
-hour_df = pd.read_csv("..\data\hour.csv")
+# Get the absolute path of the current file
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Construct the path to the CSV file using os.path.join()
+csv_path = os.path.join(current_dir, '../data/hour.csv')
+hour_df = pd.read_csv(csv_path)
 hour_df['yr'] = hour_df['yr'].apply(lambda x: "2011" if x == 0 else "2012")
 hour_df['mnth'] = hour_df['mnth'].apply(lambda x: calendar.month_name[x])
 hour_df['season'] = hour_df['season'].apply(lambda x: "Spring" if x == 1 else ("Summer" if x == 2 else ("Fall" if x == 3 else "Winter")))
