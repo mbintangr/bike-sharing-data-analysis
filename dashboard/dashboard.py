@@ -80,7 +80,7 @@ max_date = pd.to_datetime(day_df["dteday"].max())
 
 with st.sidebar:
     st.header("Bike Sharing")
-    st.image("bicycle.png")
+    st.image("../bicycle.png")
     
     start_date, end_date = st.date_input(
         label='Rentang Waktu',min_value=min_date,
